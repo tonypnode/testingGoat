@@ -1,6 +1,7 @@
 from selenium import webdriver
 import unittest
 
+
 class NewVisitorTest(unittest.TestCase):
 
     def setUp(self):
@@ -11,7 +12,7 @@ class NewVisitorTest(unittest.TestCase):
 
     def test_todo_stuff_works(self):
         # TODO: what about 127.0.0.1? jacktard
-        self.browser.get("http://locatlhost:80")
+        self.browser.get("http://localhost:8000")
 
         # page title mentions To-Do in the title
         self.assertIn('To-Do', self.browser.title)
