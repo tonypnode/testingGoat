@@ -40,6 +40,8 @@ class NewVisitorTest(unittest.TestCase):
         # There is still a text box inviting her to add another item. She
         # enters "Use peacock feathers to make a fly" (Edith is very
         # methodical)
+
+    def test_i_suck(self):
         self.fail('Finish the test!')
 
 

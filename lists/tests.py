@@ -1,7 +1,6 @@
 from django.test import TestCase
 from django.urls import resolve
 from lists.views import home_page
-from django.http import HttpRequest
 
 
 class HomePageTest(TestCase):
@@ -11,10 +10,21 @@ class HomePageTest(TestCase):
         self.assertEqual(found.func, home_page)
 
     def test_home_page_returns_correct_html(self):
-        request = HttpRequest()
-        response = home_page(request)
+        response = self.client.get('/')
+
         html = response.content.decode('utf8')
-        self.assertTrue(html.startswith('<html>'))
-        self.assertIn('<title>To-Do-List</title>', html)
-        self.assertTrue(html.endswith('/html>'))
+
+        # Make sure it's an html document
+        self.assertTrue(html.startswith('<html'))
+
+        # Make sure that shits in the title
+        self.assertIn('<title>To-Do-Lists</title>', html)
+
+        # Make sure it ends with html, but I don't think this is really needed
+        self.assertTrue(html.strip().endswith('/html>'))
+
+        # Validate the correct template was used
+        self.assertTemplateUsed(response, 'home.html')
+
+
 
