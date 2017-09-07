@@ -20,22 +20,7 @@ class HomePageTest(TestCase):
     def test_redirect_after_POST(self):
         response = self.client.post('/', data={'item_text': 'A new list item'})
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response['location'], '/')
-
-    def test_only_saves_items_when_needed(self):
-        self.client.get('/')
-        self.assertEqual(Item.objects.count(), 0)
-
-    def test_display_all_list_items(self):
-        Item.objects.create(text='blabla 1')
-        Item.objects.create(text='blabla 2')
-
-        response = self.client.get('/')
-
-        self.assertIn('blabla 1', response.content.decode())
-        self.assertIn('blabla 2', response.content.decode())
-
-
+        self.assertEqual(response['location'], '/lists/the-only-list-in-the-world/')
 
 
 class ItemModelTest(TestCase):
@@ -57,6 +42,46 @@ class ItemModelTest(TestCase):
 
         self.assertEqual(first_saved_item.text, 'the first (ever) list item')
         self.assertEqual(second_saved_item.text, 'the second list item')
+
+
+class ListViewTest(TestCase):
+
+    def test_displays_all_items(self):
+
+        Item.objects.create(text='itemey 1')
+        Item.objects.create(text='itemey 2')
+
+        response = self.client.get('/lists/the-only-list-in-the-world/')
+
+        self.assertContains(response, 'itemey 1')
+        self.assertContains(response, 'itemey 2')
+
+    def test_uses_list_view_template(self):
+        response = self.client.get('/lists/the-only-list-in-the-world/')
+        self.assertTemplateUsed(response, 'list.html')
+
+
+class NewListTest(TestCase):
+
+    class_item_text = 'NewListCLass - New list item'
+
+    # def post_new_data(self):
+    #     return self.client.post('/list/new', data={'item_text': self.class_item_text})
+
+    def test_can_save_a_post_request(self):
+        # self.post_new_data()
+        self.client.post('/lists/new', data={'item_text': 'test'})
+        self.assertEqual(Item.objects.count(), 1)
+        new_item = Item.objects.first()
+        self.assertEqual(new_item.text, 'test')
+
+    def test_redirects_after_post(self):
+        response = self.client.post('/lists/new', data={'item_text': 'test'})
+        self.assertRedirects(response, '/lists/the-only-list-in-the-world/')
+
+
+
+
 
 
 

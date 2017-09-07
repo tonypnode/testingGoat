@@ -64,7 +64,7 @@ class NewVisitorTest(LiveServerTestCase):
         # edith sees that her url is unique
         edith_list_url = self.browser.current_url
 
-        self.assertRegex(edith_list_url, '/list/.+')
+        self.assertRegex(edith_list_url, '/lists/.+')
 
         # New users comes along
         self.browser.quit()
@@ -76,13 +76,12 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertNotIn('Buy peacock feather', page_text)
         self.assertNotIn('make a fly', page_text)
 
-        #Fancis starts a new list
+        # francis starts a new list
 
         inputbox = self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys('Buy milk')
         inputbox.send_keys(Keys.ENTER)
         self.wait_for_row_in_list_table('1: Buy milk')
-
 
         # francis gets his own url
         francis_list_url = self.browser.current_url
