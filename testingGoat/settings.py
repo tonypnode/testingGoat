@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['10.55.100.207', '10.55.100.85', '127.0.0.1']
 
-
+# ../virtualenv/bin/gunicorn --bind unix:/tmp/superlists-staging.socket testingGoat.wsgi:application
 # Application definition
 
 INSTALLED_APPS = [
