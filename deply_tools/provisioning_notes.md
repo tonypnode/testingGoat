@@ -27,8 +27,8 @@ Assume we have a user account at /home/username
 
     /home/USERNAME
     └── sites
-                └── SITENAME
-                    ├── database
-                    ├── source
-                    ├── static
-                    └── virtualenv
+            └── SITENAME
+                ├── database
+                ├── source
+                ├── static
+                └── virtualenv
