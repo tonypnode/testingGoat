@@ -25,7 +25,7 @@ SECRET_KEY = 'w5%+4yntu=7lwzmh_+!w&w##&5nq49d_^!%2+*$)0+^^f*&8h#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['10.55.100.207', '10.55.100.85', '127.0.0.1']
 
 
 # Application definition
@@ -122,4 +122,6 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = (os.path.abspath(os.path.join(BASE_DIR, '../static')))
 
-TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
+# Should no longer need this, depreicated in 1.8
+# I think it's defined in the TEMPLATE dict
+# TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
