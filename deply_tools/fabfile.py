@@ -5,7 +5,7 @@ import random
 REPO_URL = 'https://github.com/tonypnode/testingGoat.git'
 
 def deploy():
-    site_folder = f'/home/{env.users}/sites/{env.host}'
+    site_folder = f'/home/{env.user}/sites/{env.host}'
     source_folder = site_folder + '/source'
     _create_directory_structure_if_necessary(site_folder)
     _get_latest_source(source_folder)
@@ -24,7 +24,7 @@ def _get_latest_source(source_folder):
     if exists(source_folder + '/.git'):
         run(f'cd {source_folder} && git fetch')
     else:
-        run('git clone {REPO_URL} {source_folder}')
+        run(f'git clone {REPO_URL} {source_folder}')
     current_commit = local('git log -n 1 --format=%H', capture=True)
     run(f'cd {source_folder} && git reset --hard {current_commit}')
 
