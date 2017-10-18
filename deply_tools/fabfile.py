@@ -33,7 +33,7 @@ def _update_settings(source_folder, site_name):
     settings_path = source_folder + '/supserlists/settings.py'
     sed(settings_path, 'DEBUG = True', 'DEBUG = False')
     sed(settings_path, 'ALLOWED_HOSTS =.+$', f'ALLOWED_HOSTS = ["{site_name}"]')
-    secret_key_file = source_folder + '/superlists/secret_key.py'
+    secret_key_file = source_folder + '/testingGoat/secret_key.py'
     if not exists(secret_key_file):
         chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
         key = ''.join(random.SystemRandom().choice(chars) for _ in range(50))
