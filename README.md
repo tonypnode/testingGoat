@@ -1,4 +1,4 @@
-# TonyPNodes 'Obey the Testing Goat' TDD project
+# TonyPNode's 'Obey the Testing Goat' TDD project
 
 ## [![Build Status](https://travis-ci.org/tonypnode/testingGoat.svg?branch=master)](https://travis-ci.org/tonypnode/testingGoat)
 
