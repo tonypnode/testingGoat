@@ -1,3 +1,3 @@
 import os
 
-os.system("python manage.py test lists")
+os.system("sudo python manage.py test lists")
